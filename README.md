@@ -30,13 +30,38 @@ minify = true
 [[d1_databases]]
 binding = "DB"
 database_name = "test-db"
-database_id ="2c952269-9eb1-4063-8fbe-08a3530925f0"
+database_id ="xxxxxx"
 
 [env.local]
 d1_databases=[
   {binding = "DB",database_name = "test-db",database_id ="test-db"}
 ]
 
+```
+
+- prisma/seed.ts
+
+```ts
+import { PrismaD1 } from '@prisma/adapter-d1';
+import { PrismaClient } from '@prisma/client';
+import { WorkersFunction } from 'cloudflare-exec';
+
+type Env = {
+  DB: D1Database;
+};
+
+const formatNumber = (num: number) => {
+  return num.toString().padStart(2, '0');
+};
+
+const main: WorkersFunction<Env> = async ({ env }) => {
+  const adapter = new PrismaD1(env.DB);
+  const prisma = new PrismaClient({ adapter });
+
+  // seed data
+};
+
+export default main;
 ```
 
 ### local execution
