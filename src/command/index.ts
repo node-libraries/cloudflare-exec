@@ -43,7 +43,7 @@ const main = async () => {
   } else {
     const config = argv.config ?? 'wrangler.toml';
     const templateSrc = fs.readFileSync(
-      path.join(__dirname, '../template', 'script.template'),
+      path.join(__dirname, '../../template', 'script.template'),
       'utf8'
     );
     const script = templateSrc.replace(
