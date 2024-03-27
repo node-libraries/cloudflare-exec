@@ -50,10 +50,6 @@ type Env = {
   DB: D1Database;
 };
 
-const formatNumber = (num: number) => {
-  return num.toString().padStart(2, '0');
-};
-
 const main: WorkersFunction<Env> = async ({ env }) => {
   const adapter = new PrismaD1(env.DB);
   const prisma = new PrismaClient({ adapter });
